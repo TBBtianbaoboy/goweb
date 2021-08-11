@@ -1,0 +1,9 @@
+"logpath" : "/go/logs/coco.log"
+"logcompress" : true
+"redisip" : "172.19.0.2"
+"userlocktime" : 3
+"tokenlivetime" : 10
+"mongoip" : "172.19.0.3"
+"vclong" : 4
+"secret" : "129387jkhf93dy8q8KJAD2asd"
+

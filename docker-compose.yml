@@ -1,0 +1,50 @@
+version: '3'
+services:
+  web:
+    build: ./coco
+    ports:
+      - "27358:27358"
+    container_name: webtest
+    depends_on:
+      - redis
+      - mongodb
+    expose:
+      - "27358"
+    restart: always
+    volumes:
+      - ./configFileForDocker/go_webLogs:/go/logs
+    tty: 'true'
+    networks:
+      mynet1:
+        ipv4_address: 172.19.0.4
+
+
+#redis config
+  redis:
+    image: redis
+    volumes:
+      - ./configFileForDocker/redis:/redis
+      - /etc/localtime:/etc/localtime
+    tty: 'true'
+    networks :
+      mynet1:
+        ipv4_address: 172.19.0.2
+
+#mongodb config
+  mongodb:
+    image: mongo
+    volumes:
+      - ./configFileForDocker/mongo:/mongo
+    tty: 'true'
+    networks:
+      mynet1:
+        ipv4_address: 172.19.0.3
+
+#create a new bridge named mynet1
+networks:
+  mynet1:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
+
